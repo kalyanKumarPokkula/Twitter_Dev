@@ -12,9 +12,10 @@ const serverSetup = async () => {
         console.log("mongo db connected");
         const service = new TweetService();
         const tweet = await service.create({
-            content : 'Done with #refactor ?'
+            content : "My other #CoDE #Working or #NOT"
         });
         console.log(tweet);
+       
     })
 }
 
