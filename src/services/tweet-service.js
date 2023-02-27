@@ -13,7 +13,7 @@ class TweetService{
             let tags = content.match(/#[a-zA-Z0-9_]+/g);
             tags = tags.map(ele => ele.substring(1).toLowerCase());
             const tweet = await this.tweetRepository.create(data);
-            let alreadyPresentTags = await (await this.hashtagRepository.findByName(tags));
+            let alreadyPresentTags = await this.hashtagRepository.findByName(tags);
             let titleOfPrensenttags = alreadyPresentTags.map(tag => tag.title);
             let newTags = tags.filter(tag => !titleOfPrensenttags.includes(tag));
             newTags = newTags.map((tag) => {

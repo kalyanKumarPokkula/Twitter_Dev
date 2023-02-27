@@ -4,8 +4,9 @@ import morgan from 'morgan';
 
 import  {connect}  from './config/database.js';
 import { PORT } from './config/server-config.js';
-import TweetService from './services/tweet-service.js';
 import router from './routes/index.js';
+import { TweetRepository,UserRepository } from './repository/index.js'
+import LikeService from './services/like-service.js';
 
 const logger = morgan('combined');
 
@@ -23,6 +24,18 @@ const serverSetup = async () => {
         console.log(`Server started at port ${PORT}`);
         connect();
         console.log("mongo db connected");
+        const tweetRepo = new TweetRepository();
+        const userRepo = new UserRepository();
+        const tweets = await tweetRepo.getAll();
+        const user = await userRepo.getAll();
+        const likeable = new LikeService();
+        
+        const tweet = await tweetRepo.get(tweets[0].id);
+        console.log(tweet);
+        
+        
+        
+
         
     })
 }
