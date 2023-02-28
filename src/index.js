@@ -25,18 +25,8 @@ const serverSetup = async () => {
         connect();
         console.log("mongo db connected");
         const tweetRepo = new TweetRepository();
-        const userRepo = new UserRepository();
-        const tweets = await tweetRepo.getAll();
-        const user = await userRepo.getAll();
-        const likeable = new LikeService();
-        
-        const tweet = await tweetRepo.get(tweets[0].id);
-        console.log(tweet);
-        
-        
-        
-
-        
+        const len = await tweetRepo.TotalComments('63fdb34c579f1c40dbb57d0d');
+        console.log("TotalComments",len);     
     })
 }
 

@@ -41,6 +41,24 @@ class CrudRepository{
             throw error
         }
     }
+    
+    async TotalLikes(id){
+        try {
+            const response = await this.model.findById(id);
+            return response.likes.length;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async TotalComments(id){
+        try {
+            const response = await this.model.findById(id);
+            return response.comments.length;
+        } catch (error) {
+            throw error;
+        }
+    }
 
     async update(id , data){
         try {
