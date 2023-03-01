@@ -26,6 +26,27 @@ const createComment = async (req ,res) => {
     }
 }
 
+const getMoreComments = async (req ,res) => {
+    try {
+        console.log(req.query.ModelId);
+        let comments = await commentService.getMoreComments( req.query.ModelId);
+        return res.status(200).json({
+            message : 'Successfully got a comments',
+            success : true,
+            data : comments,
+            err : {}
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message : "Something went wrong",
+            success : false,
+            data : {},
+            err : error
+        })
+    }
+}
+
 export {
-    createComment
+    createComment,
+    getMoreComments
 }

@@ -69,6 +69,16 @@ class CrudRepository{
             throw error;
         }
     }
+
+    async getComments(id){
+        try {
+            let comments = await this.model.findById(id).populate({path : 'comments'}).lean();
+            return comments.comments;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
 }
 
 export default CrudRepository;

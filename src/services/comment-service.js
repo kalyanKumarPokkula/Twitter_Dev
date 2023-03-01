@@ -20,12 +20,24 @@ class CommentService {
             content : content,
             userId : UserId,
             onModel : onModel,
-            commentable : ModelId
+            commentable : ModelId,
+            comments : [],
+            likes : []
         })
         commentable.comments.push(comment);
         await commentable.save();
 
         return comment;
+    }
+
+    async getMoreComments(commentId){
+        try {
+            console.log('inside comment service' , commentId);
+            let response = await this.commentRepository.getComments(commentId);
+            return response;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

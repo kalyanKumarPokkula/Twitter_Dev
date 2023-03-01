@@ -9,18 +9,18 @@ const tweetSchema = new mongoose.Schema({
     likes : [
         {
             type : mongoose.Schema.Types.ObjectId,
-            ref : 'likes'
+            ref : 'Like'
         }
     ],
     comments : [
         {
             type : mongoose.Schema.Types.ObjectId,
-            ref : 'comments'
+            ref : 'Comment'
         }
     ],
     userId : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'users'
+        ref : 'User'
     }
 },{timestamps : true});
 

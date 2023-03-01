@@ -12,7 +12,6 @@ const create = async (req ,res) =>{
             err : {}
         });
     } catch (error) {
-        console.log('something went wrong in controller');
         return res.status(500).json({
             data : {},
             message : "Not able to create a tweet",
@@ -22,6 +21,26 @@ const create = async (req ,res) =>{
     }
 }
 
+const getTweet = async (req ,res) => {
+    try {
+        const tweet = await tweetService.get(req.params.id);
+        return res.status(200).json({
+            message : 'Successfully got at tweet',
+            success : true,
+            data : tweet,
+            err : {}
+        })
+    } catch (error) {
+        return res.status(500).json({
+            data : {},
+            message : "Not able to get a tweet",
+            success : false,
+            err : error
+        });
+    }
+}
+
 export {
-    create
+    create,
+    getTweet
 }
