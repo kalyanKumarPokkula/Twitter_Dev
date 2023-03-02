@@ -1,10 +1,10 @@
-import { UserRepository } from '../repository/index.js';
+import UserService from "../services/user-service.js";
 
-const userRepository = new UserRepository();
+const userService = new UserService();
 
-const usercreate = async (req ,res) => {
+const signup = async (req ,res) => {
     try {
-        let user = await userRepository.create(req.body);
+        let user = await userService.signup(req.body);
         return res.status(201).json({
             data : user,
             message : "Successfully created a user",
@@ -22,5 +22,5 @@ const usercreate = async (req ,res) => {
 }
 
 export {
-    usercreate
+    signup
 }
