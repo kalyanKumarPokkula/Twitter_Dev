@@ -13,6 +13,18 @@ class UserService{
             throw error
         }
     }
+
+    async signin(data){
+        let user = await this.userRepository.getByEmail(data.email);
+        if(!user){
+            throw new Error('User not found')
+        }
+        if(!user.comparePassword(data.password)){
+            throw new Error('Invalid password');
+        }
+        const token =  user.genJWT();
+        return token;
+    }
 }
 
 export default UserService;

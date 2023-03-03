@@ -21,6 +21,27 @@ const signup = async (req ,res) => {
     }
 }
 
+const signin = async (req ,res) => {
+    try {
+        let token = await userService.signin(req.body);
+        return res.status(200).json({
+            message : 'Successfully generate a token',
+            success :true,
+            data : token,
+            err : {}
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data : {},
+            message : error.message,
+            success : false,
+            err : error
+        })
+    }
+}
+
 export {
-    signup
+    signup,
+    signin
 }
