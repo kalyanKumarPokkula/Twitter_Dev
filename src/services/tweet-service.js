@@ -9,6 +9,7 @@ class TweetService{
 
     async create(data){
         try {
+            console.log(data);
             const content = data.content;
             let tags = content.match(/#[a-zA-Z0-9_]+/g);
             tags = tags.map(ele => ele.substring(1).toLowerCase());
@@ -21,7 +22,6 @@ class TweetService{
                     title : tag,
                     tweets : [tweet._id]
                 }})
-
             const Bulkcreate = await this.hashtagRepository.bulkcreate(newTags);
             alreadyPresentTags.forEach((tag) => {
                 tag.tweets.push(tweet._id);

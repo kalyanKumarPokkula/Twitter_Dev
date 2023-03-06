@@ -10,7 +10,8 @@ const opts = {
 }
 
 
-export const passportAuth = (password) => {
+export const passportAuth = (passport) => {
+   try {
     passport.use(new JwtStrategy(opts , async (jwt_payload ,done) => {
         const user = await User.findById(jwt_payload.id);
         if(!user){
@@ -18,5 +19,9 @@ export const passportAuth = (password) => {
         }else{
             done(null , user);
         }
-    }))
+    }));
+   } catch (error) {
+        console.log(error);
+        throw error;
+   }
 }
